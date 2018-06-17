@@ -1,0 +1,281 @@
+
+* { box-sizing: border-box }
+
+:root {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    background: #FAFAFA;
+    color: #212121;
+}
+
+body {
+    margin: 0;
+    -webkit-user-select: none;
+    cursor: default;
+}
+
+a {
+    color: unset;
+    text-decoration: none;
+}
+
+small {
+    font-size: 10px;
+    opacity: .8;
+}
+
+.heading {
+    font-size: 12px;
+    text-transform: uppercase;
+    opacity: .8;
+    padding-bottom: 8px;
+}
+
+.subheading {
+    font-size: 10px;
+    text-transform: uppercase;
+    opacity: .7;
+    padding-bottom: 6px;
+}
+
+/* Input Areas */
+
+input[type=text], input[type=url]
+{
+    -webkit-appearance: none;
+    border: 1px solid gray;
+    font: unset;
+    background: rgba(128, 128, 128, .1);
+    padding: 7px;
+    border-radius: 5px;
+}
+
+input[type=checkbox]
+{
+    -webkit-appearance: none;
+    display: inline-block;
+    background: #DEDEDE;
+    width: 32px; height: 16px;
+    border-radius: 8px;
+    position: relative;
+    outline: none;
+}
+
+    input[type=checkbox]::after
+    {
+        content: "";
+        display: block;
+        width: 14px; height: 14px;
+        background: #999;
+        border-radius: 50%;
+        position: absolute;
+        left: 1px;
+        top: 1px;
+        transition: left .2s, background .2s;
+    }
+    
+    input[type=checkbox]:checked::after {
+        background: #e74c3c;
+        left: 17px;
+    }
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    padding: 2px 0;
+}
+
+    .checkbox-container > input[type=checkbox] {
+        flex-shrink: 0;
+        flex-grow: 0;
+    }
+
+    .checkbox-container > div {
+        padding-left: 5px;
+    }
+
+/* Overlays */
+
+.overlays {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    transition: opacity .1s;
+}
+
+    .overlays.active {
+        opacity: 1;
+        pointer-events: unset;
+    }
+
+.overlays .overlay-cloak {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, .4);
+}
+
+.overlays > *:not(.overlay-cloak) {
+    position: fixed;
+    width: 280px;
+    background: #FAFAFA;
+    color: #212121;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, .2);
+    padding: 8px;
+    border-radius: 8px;
+    transform: scale(.9);
+    transition: transform .2s, opacity .2s;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.overlays > *.active {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: unset;
+}
+
+/* Header */
+
+header {
+    background: linear-gradient(to bottom, #e74c3c, #c0392b);
+    color: #FAFAFA;
+    position: relative;
+    padding-bottom: 25px;
+    height: 156px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, .2);
+}
+
+    header > .status-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+        header > .status-bar .player-status {
+            font-size: 12px;
+            text-transform: uppercase;
+            padding-left: 12px;
+        }
+
+        header > .status-bar ul {
+            display: inline-block;
+            padding: 0; margin: 0;
+            list-style: none;
+            font-size: 0px;
+        }
+
+            header > .status-bar ul li {
+                display: inline-block;
+                padding: 0; margin: 0;
+            }
+
+                header > .status-bar ul li a {
+                    display: inline-block;
+                    font-size: 1rem;
+                    padding: 8px;
+                    margin: 4px;
+                    margin-left: 0;
+                    border-radius: 50%;
+                    transition: background .1s;
+                    cursor: unset;
+                }
+
+                    header > .status-bar ul li a:hover {
+                        background: rgba(0, 0, 0, .2);
+                        background-blend-mode: overlay;
+                    }
+
+                    header > .status-bar ul li a:active {
+                        background: rgba(0, 0, 0, .4);
+                        background-blend-mode: overlay;
+                    }
+
+    header > .song-info {
+        padding: 16px 0;
+    }
+
+        header > .song-info > .song-artist {
+            font-size: 14px;
+            padding-left: 12px;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        header > .song-info > .song-title {
+            font-size: 32px;
+            font-weight: 300;
+            padding: 0 12px;
+        }
+
+    header > .player-controls {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 100%;
+        left: 0; right: 0;
+        transform: translateY(-50%);
+    }
+        
+        header > .player-controls .player-play {
+            font-size: 32px;
+            padding: 16px;
+            background: lightgray;
+            color: gray;
+            border-radius: 50%;
+            text-align: center;
+            margin: 0 8px;
+            border: 1px solid gray;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, .2);
+        }
+
+            header > .player-controls .player-play i {
+                transform: translateX(1px) translateY(1px);
+            }
+
+        header > .player-controls .player-skip {
+            padding: 8px;
+            background: lightgray;
+            color: gray;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid gray;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, .2);
+        }
+
+/* Settings Music Sources */
+
+#settings .music-sources {
+    margin: 0; padding: 0;
+    list-style: none;
+}
+
+#settings .music-sources li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#settings .music-sources li > i {
+    font-size: 18px;
+}
+
+#settings .music-sources li div {
+    flex-grow: 1;
+    padding: 5px;
+}
+
+#settings .music-sources li div span {
+    display: block;
+}
+
+#settings .music-sources li div span.source-info {
+    font-size: 12px;
+    opacity: .8;
+    padding-top: 4px;
+}

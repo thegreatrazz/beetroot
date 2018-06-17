@@ -1,0 +1,37 @@
+{
+  "name": "beetroot",
+  "version": "0.1.1-dev",
+  "description": "Not just rewrite, but a complete reconceptualisation of the beetroot project.",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thegreatrazz/beetroot.git"
+  },
+  "keywords": [
+    "electron",
+    "express",
+    "music",
+    "id3",
+    "web",
+    "selfhosted"
+  ],
+  "author": "thegreatrazz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thegreatrazz/beetroot/issues"
+  },
+  "homepage": "https://github.com/thegreatrazz/beetroot#readme",
+  "devDependencies": {
+    "electron": "^2.0.2",
+    "electron-packager": "^12.1.0"
+  },
+  "dependencies": {
+    "electron-settings": "^3.2.0",
+    "express": "^4.16.3",
+    "id3-parser": "^2.0.0",
+    "jquery": "^3.3.1"
+  }
+}
