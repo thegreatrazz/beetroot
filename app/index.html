@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="lib/fontawesome/css/fontawesome-all.css">
+        <link rel="stylesheet" href="font/monserrat.css">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <header>
             <div class="status-bar">
-                <span class="player-status">Now Playing</span>
+                <span class="player-status"></span>
                 <ul>
                     <li><a href="#" data-overlay="requestcfg" title="Requests: Off"><i class="fas fa-fw fa-globe"></i></a></li>
                     <li><a href="#" data-toggle="song.random" title="Random: Off"><i class="fas fa-fw fa-random"></i></a></li>
@@ -216,5 +217,7 @@
         <!-- Scripts -->
         <script src="script.js"></script>
         <script src="scripts/overlays.js"></script>
+        <script src="scripts/session.js"></script>
+        <script src="scripts/i18n.js"></script>
     </body>
 </html>
