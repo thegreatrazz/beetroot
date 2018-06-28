@@ -8,8 +8,9 @@ function createWindow()
 {
     win = new BrowserWindow({
         width: 360, height: 500,
-        useContentSize: true
-        // minWidth: 360, maxWidth: 360
+        useContentSize: true,
+        // minWidth: 360, maxWidth: 360,
+        titleBarStyle: "hiddenInset"
     })
 
     win.loadFile(path.join(__dirname, "app", "index.html"))
