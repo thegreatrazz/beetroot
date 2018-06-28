@@ -1,16 +1,16 @@
 {
-    "prettyName": "English (United States)",
+    "prettyName": "日本語 (Japanese)",
     "body": {
         // General app info
-        "app.name": "Beetroot - DJ Panel",
+        "app.name": "Beetroot - ＤＪパネル",
 
         // Header
-        "header.nowPlaying":   "Now Playing",
+        "header.nowPlaying":   "ＮＯＷ　ＰＬＡＹＩＮＧ",
         "header.requests.on":  "Requests: On",
         "header.requests.off": "Requests: Off",
         "header.random.on":    "Random: On",
         "header.random.off":   "Random: Off",
-        "header.settings":     "Settings",
+        "header.settings":     "設定",
 
         // Request Config
         "requestCfg.heading":          "Song Requests",
@@ -23,13 +23,13 @@
         "requestCfg.progress.action":  "Giving the server a kick...",
         "requestCfg.progress.failConn": "The server failed connecting. Connect to the internet or try again later.",
         "requestCfg.progress.failMisc": "Something happened but we can't describe it. We left a log file in \"$\".",
-        "requestCfg.progress.success": "People could request songs by going to \"$\"",
+        "requestCfg.progress.success": " could request songs by going to \"$\"",
 
         // Settings Pane
-        "settings.heading": "Settings",
-        "settings.sources.heading": "Music Sources",
-        "settings.sources.localSource": "Local Music Files",
-        "settings.misc.heading": "Miscellaneous",
-        "settings.misc.lang": "Language"
+        "settings.heading": "設定",
+        "settings.sources.heading": "音楽ソース",
+        "settings.sources.localSource": "音楽ライブラリ",
+        "settings.misc.heading": "雑",
+        "settings.misc.lang": "言語"
     }
 }
