@@ -4,7 +4,8 @@
   "description": "Not just rewrite, but a complete reconceptualisation of the beetroot project.",
   "main": "app.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "make": "./build.js"
   },
   "repository": {
     "type": "git",

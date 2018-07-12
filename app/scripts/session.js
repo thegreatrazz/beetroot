@@ -19,6 +19,9 @@ var config = {
         serverSession: "a-completely-random-guid-used-for-client-verification",
         serverId: "a-6-character-hex",
         serverUrl: "https://beets.thegreatrazz.nz/$"
+    },
+    ui: {
+        language: "en-US"
     }
 }
 

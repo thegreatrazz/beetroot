@@ -1,10 +1,10 @@
 {
     "prettyName": "日本語 (Japanese)",
+    "author": "日下田 俊也、ラレシュ　ニストル",
+
     "body": {
-        // General app info
         "app.name": "Beetroot - ＤＪパネル",
 
-        // Header
         "header.nowPlaying":   "ＮＯＷ　ＰＬＡＹＩＮＧ",
         "header.requests.on":  "Requests: On",
         "header.requests.off": "Requests: Off",
@@ -12,7 +12,6 @@
         "header.random.off":   "Random: Off",
         "header.settings":     "設定",
 
-        // Request Config
         "requestCfg.heading":          "Song Requests",
         "requestCfg.allow.title":      "Allow song requests",
         "requestCfg.allow.sub.on":     "Guests will be able to request songs",
@@ -23,9 +22,8 @@
         "requestCfg.progress.action":  "Giving the server a kick...",
         "requestCfg.progress.failConn": "The server failed connecting. Connect to the internet or try again later.",
         "requestCfg.progress.failMisc": "Something happened but we can't describe it. We left a log file in \"$\".",
-        "requestCfg.progress.success": " could request songs by going to \"$\"",
+        "requestCfg.progress.success": "People could request songs by going to \"$\"",
 
-        // Settings Pane
         "settings.heading": "設定",
         "settings.sources.heading": "音楽ソース",
         "settings.sources.localSource": "音楽ライブラリ",

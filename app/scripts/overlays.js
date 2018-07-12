@@ -1,4 +1,4 @@
-/// <reference>
+/// <reference path="../script.js">
 
 /**
  * Overlays object

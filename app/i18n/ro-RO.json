@@ -1,33 +1,33 @@
 {
-    "prettyName": "English (United States)",
-    "author": "Raresh Nistor",
+    "prettyName": "Română (Romanian)",
+    "author": "Rareș Nistor",
     
     "body": {
-        "app.name": "Beetroot - DJ Panel",
+        "app.name": "Beetroot - Panou DJ",
 
         "header.nowPlaying":   "Now Playing",
-        "header.requests.on":  "Requests: On",
-        "header.requests.off": "Requests: Off",
+        "header.requests.on":  "Cereri: On",
+        "header.requests.off": "Cereri: Off",
         "header.random.on":    "Random: On",
         "header.random.off":   "Random: Off",
-        "header.settings":     "Settings",
+        "header.settings":     "Setări",
 
-        "requestCfg.heading":          "Song Requests",
-        "requestCfg.allow.title":      "Allow song requests",
+        "requestCfg.heading":          "Cereri muzică",
+        "requestCfg.allow.title":      "Recepționați cereri",
         "requestCfg.allow.sub.on":     "Guests will be able to request songs",
         "requestCfg.allow.sub.off":    "Guests will <b>not</b> be able to request songs",
-        "requestCfg.moderate.title":   "Moderate song requests",
+        "requestCfg.moderate.title":   "Moderați cererile",
         "requestCfg.moderate.sub.on":  "Guests will be able to request songs",
         "requestCfg.moderate.sub.off": "Guests will <b>not</b> be able to request songs",
-        "requestCfg.progress.action":  "Giving the server a kick...",
+        "requestCfg.progress.action":  "Scoatem serverul din pat...",
         "requestCfg.progress.failConn": "The server failed connecting. Connect to the internet or try again later.",
         "requestCfg.progress.failMisc": "Something happened but we can't describe it. We left a log file in \"$\".",
         "requestCfg.progress.success": "People could request songs by going to \"$\"",
 
-        "settings.heading": "Settings",
-        "settings.sources.heading": "Music Sources",
-        "settings.sources.localSource": "Local Music Files",
-        "settings.misc.heading": "Miscellaneous",
-        "settings.misc.lang": "Language"
+        "settings.heading": "Setări",
+        "settings.sources.heading": "Surse muzică",
+        "settings.sources.localSource": "Fișiere locale",
+        "settings.misc.heading": "Diverse",
+        "settings.misc.lang": "Limbă"
     }
 }

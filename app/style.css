@@ -212,6 +212,7 @@ header {
                     border-radius: 50%;
                     transition: background .1s;
                     cursor: unset;
+                    -webkit-app-region: no-drag;
                 }
 
                     header > .status-bar ul li a:hover {
