@@ -15,7 +15,7 @@ packager({
 
     // Target platforms
     platform: "win32,linux,darwin",
-    arch: "ia32,x64",
+    arch: "x64",
 
     // Windows metadata
     win32metadata: {

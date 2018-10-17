@@ -42,6 +42,8 @@ var i18n = {
             if (ext !== "json") continue  // If it doesn't, skip
             
             // Load up the file
+            // TODO: Find a Node-less way of retrieving the file.
+            //       hook into external function?
             var fileData = fs.readFileSync(path.join(__dirname, "i18n", filename),
                                                      { encoding: "utf8" })
             
@@ -61,6 +63,7 @@ var i18n = {
                 // If this a syntax error, skip
                 if (ex instanceof SyntaxError)
                     continue
+                    
                 // Otherwise throw again
                 else throw ex
             }
@@ -117,4 +120,35 @@ var i18n = {
     },
 }
 
+// Load the default language before moving on
 i18n.setLanguage(i18n.lang)
+
+// Load the languages into the language list
+i18n.getLanguages().forEach((lang, i) =>
+{
+    // Load the ui.language data toggle
+    let el = $("[data-toggle=\"ui.language\"]")
+
+    // Create an option element
+    let opt = $("<option />")
+    opt.attr("value", lang.id)
+    opt.html(lang.name)
+
+    // Insert the language
+    opt.appendTo(el)
+
+    // If the current language is selected, load that.
+    if (i18n.lang == lang.id)
+        el.each((ix, el) => { el.selectedIndex = i })
+})
+
+// Hook into the setting of ui.language
+sessionMgr.settings.hooks.push((key, content) =>
+{
+    // Don't do anythign if this not out key
+    if (key !== "ui.language")
+        return
+
+    // Ok it is... Set the new language
+    i18n.setLanguage(content)
+})

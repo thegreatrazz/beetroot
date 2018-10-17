@@ -129,7 +129,7 @@ var sessionMgr = {
          */
         flush: function() 
         {
-            console.warn("Not implemented.")
+            console.warn("Settings for Beetroot are not save-able for the time being")
         },
 
         /**
@@ -137,6 +137,20 @@ var sessionMgr = {
          */
         hooks: [ function(key, content) {
             console.log(`Demo hook.\n\nKey: ${key}\nContent: ${content}`)
-        } ]
+        } ],
+    
+        /**
+         * Events for UI events
+         */
+        events: {
+            toggleChange: (ev) =>
+            {
+                // (ev) => console.log(ev.target.value)
+                sessionMgr.settings.set($(ev.target).attr("data-toggle"), ev.target.value)
+            }
+        }
     }
 }
+
+// Settings toggle
+$("[data-toggle]").on("change", sessionMgr.settings.events.toggleChange)
