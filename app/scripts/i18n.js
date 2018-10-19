@@ -8,6 +8,10 @@
 // and provides methods for the string of a specific language.
 //
 
+const fs = require("fs")
+const path = require("path")
+const $ = require("jquery")
+
 /**
  * Internationalisation
  */
@@ -16,6 +20,11 @@ var i18n = {
      * Language ID (defaults to _English, United States_)
      */
     lang: "en-US",
+
+    /**
+     * Language to fall back on if a string is not found
+     */
+    langFallback: "en-US",
 
     /**
      * Language data
@@ -148,17 +157,6 @@ i18n.getLanguages().forEach((lang, i) =>
     // If the current language is selected, load that.
     if (i18n.lang == lang.id)
         el.each((ix, el) => { el.selectedIndex = i })
-})
-
-// Hook into the setting of ui.language
-settings.hooks.push((key, content) =>
-{
-    // Don't do anythign if this not out key
-    if (key !== "ui.language")
-        return
-
-    // Ok it is... Set the new language
-    i18n.setLanguage(content)
 })
 
 module.exports = i18n

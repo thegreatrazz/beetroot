@@ -6,6 +6,8 @@
 // and handles the behind the scenes triggers and variables for Beetroot
 //
 
+const $ = require("jquery")
+
 /**
  * Configuration, do not change variables directly
  */

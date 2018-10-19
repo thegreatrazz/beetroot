@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" href="lib/fontawesome/css/fontawesome-all.css">
+        <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css">
         <link rel="stylesheet" href="font/monserrat.css">
         <link rel="stylesheet" href="style.css">
 
@@ -10,7 +10,7 @@
     <body>
         <header>
             <div class="status-bar">
-                <span class="player-status" data-i18n-string="header.nowPlaying">Now Playing</span>
+                <span class="player-status"><span data-i18n-string="header.nowPlaying"></span></span>
                 <ul>
                     <li><a href="#" data-overlay="librarycfg" title="Music Library"><i class="fas fa-fw fa-music"></i></a></li>
                     <li><a href="#" data-overlay="requestcfg" title="Requests: Off"><i class="fas fa-fw fa-globe"></i></a></li>
@@ -88,33 +88,8 @@
                 <div class="heading">Music Library</div>
 
                 <div class="subheading">Your Music Library</div>
-                <ul class="music-sources">
-                    <li>
-                        <i class="fas fa-fw fa-folder"></i>
-                        <div class="source-path">C:\Users\rareshn\Music</div>
-                        <a href="#" title="Remove"><i class="fas fa-fw fa-times"></i></a>
-                    </li>
-                    <li>
-                        <i class="fas fa-fw fa-folder"></i>
-                        <div class="source-path">D:\Music</div>
-                        <a href="" title="Remove"><i class="fas fa-fw fa-times"></i></a>
-                    </li>
-                    <li>
-                        <i class="fas fa-fw fa-folder"></i>
-                        <div class="source-path">Z:\Music</div>
-                        <a href="" title="Remove"><i class="fas fa-fw fa-times"></i></a>
-                    </li>
-                    <li>
-                        <i class="fas fa-fw fa-folder"></i>
-                        <div class="source-path">X:\</div>
-                        <a href="" title="Remove"><i class="fas fa-fw fa-times"></i></a>
-                    </li>
-                    <li>
-                        <i class="fas fa-fw fa-folder"></i>
-                        <div class="source-path">/dev/null</div>
-                        <a href="" title="Remove"><i class="fas fa-fw fa-times"></i></a>
-                    </li>
-                </ul>
+                <ul class="music-sources" id="local-source-cfg"></ul>
+                <a href="#" class="btn">Add Folder</a>
 
                 <div class="subheading">Other Music Providers</div>
                 <ul class="music-sources">

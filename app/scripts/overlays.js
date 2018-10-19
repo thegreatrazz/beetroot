@@ -1,5 +1,7 @@
 /// <reference path="../script.js">
 
+const $ = require("jquery")
+
 /**
  * Overlays object
  */
