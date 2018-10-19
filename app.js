@@ -1,6 +1,6 @@
 
 var path = require("path")
-var { app, BrowserWindow } = require("electron")
+var { app, BrowserWindow, ipcMain, dialog } = require("electron")
 
 var win
 
@@ -19,3 +19,11 @@ function createWindow()
 }
 
 app.on("ready", createWindow)
+
+ipcMain.on("open-dialog", (event, arg) =>
+{
+    dialog.showOpenDialog(win, arg, paths =>
+    {
+        event.sender.send(JSON.stringify(paths))
+    })
+})

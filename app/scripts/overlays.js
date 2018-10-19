@@ -52,3 +52,5 @@ $("[data-overlay]").click(function()
 {
     overlays.showOverlay($(this).attr("data-overlay"))
 })
+
+module.exports = overlays

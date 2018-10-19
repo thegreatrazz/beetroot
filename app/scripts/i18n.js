@@ -23,12 +23,17 @@ var i18n = {
     langData: { },
 
     /**
+     * Language folder
+     */
+    langFolder: path.join(__dirname, "..", "i18n"),
+
+    /**
      * Get a list of available languages
      */
     getLanguages: function()
     {
         // Get a list of file names
-        var fnames = fs.readdirSync(path.join(__dirname, "i18n"))
+        var fnames = fs.readdirSync(i18n.langFolder)
         var langList = [];
 
         // Filter the files and get the languages
@@ -44,7 +49,7 @@ var i18n = {
             // Load up the file
             // TODO: Find a Node-less way of retrieving the file.
             //       hook into external function?
-            var fileData = fs.readFileSync(path.join(__dirname, "i18n", filename),
+            var fileData = fs.readFileSync(path.join(i18n.langFolder, filename),
                                                      { encoding: "utf8" })
             
             // Try to get the pretty name and author without crashing
@@ -80,11 +85,11 @@ var i18n = {
     getLanguageData: function(lang)
     {
         // Check if the language is available
-        if (!fs.existsSync(path.join(__dirname, "i18n", lang + ".json")))
-        throw "Language not available";
+        if (!fs.existsSync(path.join(i18n.langFolder, lang + ".json")))
+            throw `Language "${lang}" not available`;
 
         // Read the language data
-        var langStr = fs.readFileSync(path.join(__dirname, "i18n", lang + ".json"))
+        var langStr = fs.readFileSync(path.join(i18n.langFolder, lang + ".json"))
         var langObj = JSON.parse(langStr)
 
         // Return to caller
@@ -102,6 +107,9 @@ var i18n = {
         // Set the language
         i18n.lang = lang
         i18n.langData = data
+
+        // Set the author
+        $("[data-i18n-author]").html(i18n.langData.author)
 
         // Look for strings needed to be changed
         $("[data-i18n-string]").each((i, e) =>
@@ -143,7 +151,7 @@ i18n.getLanguages().forEach((lang, i) =>
 })
 
 // Hook into the setting of ui.language
-sessionMgr.settings.hooks.push((key, content) =>
+settings.hooks.push((key, content) =>
 {
     // Don't do anythign if this not out key
     if (key !== "ui.language")
@@ -152,3 +160,5 @@ sessionMgr.settings.hooks.push((key, content) =>
     // Ok it is... Set the new language
     i18n.setLanguage(content)
 })
+
+module.exports = i18n

@@ -347,31 +347,31 @@ main {
 
 /* Settings Music Sources */
 
-#settings .music-sources {
+#librarycfg .music-sources {
     margin: 0; padding: 0;
     list-style: none;
 }
 
-#settings .music-sources li {
+#librarycfg .music-sources li {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-#settings .music-sources li > i {
+#librarycfg .music-sources li > i {
     font-size: 18px;
 }
 
-#settings .music-sources li div {
+#librarycfg .music-sources li div {
     flex-grow: 1;
     padding: 5px;
 }
 
-#settings .music-sources li div span {
+#librarycfg .music-sources li div span {
     display: block;
 }
 
-#settings .music-sources li div span.source-info {
+#librarycfg .music-sources li div span.source-info {
     font-size: 12px;
     opacity: .8;
     padding-top: 4px;

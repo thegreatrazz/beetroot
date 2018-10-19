@@ -4,12 +4,15 @@
         <link rel="stylesheet" href="lib/fontawesome/css/fontawesome-all.css">
         <link rel="stylesheet" href="font/monserrat.css">
         <link rel="stylesheet" href="style.css">
+
+        <title data-i18n-string="app.name"></title>
     </head>
     <body>
         <header>
             <div class="status-bar">
-                <span class="player-status"></span>
+                <span class="player-status" data-i18n-string="header.nowPlaying">Now Playing</span>
                 <ul>
+                    <li><a href="#" data-overlay="librarycfg" title="Music Library"><i class="fas fa-fw fa-music"></i></a></li>
                     <li><a href="#" data-overlay="requestcfg" title="Requests: Off"><i class="fas fa-fw fa-globe"></i></a></li>
                     <li><a href="#" data-toggle="song.random" title="Random: Off"><i class="fas fa-fw fa-random"></i></a></li>
                     <li><a href="#" data-overlay="settings" title="Settings"><i class="fas fa-fw fa-cog"></i></a></li>
@@ -73,72 +76,6 @@
                         <a href="#"><i class="fas fa-fw fa-times"></i></a>
                     </div>
                 </li>
-                <li>
-                    <div class="song-info">
-                        <span class="song-artist">Smash Mouth</span>
-                        <span class="song-title">All Star <i class="fab fa-fw fa-spotify"></i></span>
-                    </div>
-                    <div class="song-actions">
-                        <a href="#"><i class="fas fa-fw fa-chevron-up"></i></a>
-                        <a href="#"><i class="fas fa-fw fa-chevron-down"></i></a>
-                        <a href="#"><i class="fas fa-fw fa-times"></i></a>
-                    </div>
-                </li>
-                <li>
-                    <div class="song-info">
-                        <span class="song-artist">Smash Mouth</span>
-                        <span class="song-title">All Star <i class="fab fa-fw fa-spotify"></i></span>
-                    </div>
-                    <div class="song-actions">
-                        <a href="#"><i class="fas fa-fw fa-chevron-up"></i></a>
-                        <a href="#"><i class="fas fa-fw fa-chevron-down"></i></a>
-                        <a href="#"><i class="fas fa-fw fa-times"></i></a>
-                    </div>
-                </li>
-                <li>
-                    <div class="song-info">
-                        <span class="song-artist">Smash Mouth</span>
-                        <span class="song-title">All Star <i class="fab fa-fw fa-spotify"></i></span>
-                    </div>
-                    <div class="song-actions">
-                        <a href="#"><i class="fas fa-fw fa-chevron-up"></i></a>
-                        <a href="#"><i class="fas fa-fw fa-chevron-down"></i></a>
-                        <a href="#"><i class="fas fa-fw fa-times"></i></a>
-                    </div>
-                </li>
-                <li>
-                    <div class="song-info">
-                        <span class="song-artist">Smash Mouth</span>
-                        <span class="song-title">All Star <i class="fab fa-fw fa-spotify"></i></span>
-                    </div>
-                    <div class="song-actions">
-                        <a href="#"><i class="fas fa-fw fa-chevron-up"></i></a>
-                        <a href="#"><i class="fas fa-fw fa-chevron-down"></i></a>
-                        <a href="#"><i class="fas fa-fw fa-times"></i></a>
-                    </div>
-                </li>
-                <li>
-                    <div class="song-info">
-                        <span class="song-artist">Smash Mouth</span>
-                        <span class="song-title">All Star <i class="fab fa-fw fa-spotify"></i></span>
-                    </div>
-                    <div class="song-actions">
-                        <a href="#"><i class="fas fa-fw fa-chevron-up"></i></a>
-                        <a href="#"><i class="fas fa-fw fa-chevron-down"></i></a>
-                        <a href="#"><i class="fas fa-fw fa-times"></i></a>
-                    </div>
-                </li>
-                <li>
-                    <div class="song-info">
-                        <span class="song-artist">Smash Mouth</span>
-                        <span class="song-title">All Star <i class="fab fa-fw fa-spotify"></i></span>
-                    </div>
-                    <div class="song-actions">
-                        <a href="#"><i class="fas fa-fw fa-chevron-up"></i></a>
-                        <a href="#"><i class="fas fa-fw fa-chevron-down"></i></a>
-                        <a href="#"><i class="fas fa-fw fa-times"></i></a>
-                    </div>
-                </li>
             </ul>
         </main>
 
@@ -146,6 +83,61 @@
         <div class="overlays">
             <div class="overlay-cloak"></div>
             
+            <!-- Music Library -->
+            <div id="librarycfg">
+                <div class="heading">Music Library</div>
+
+                <div class="subheading">Your Music Library</div>
+                <ul class="music-sources">
+                    <li>
+                        <i class="fas fa-fw fa-folder"></i>
+                        <div class="source-path">C:\Users\rareshn\Music</div>
+                        <a href="#" title="Remove"><i class="fas fa-fw fa-times"></i></a>
+                    </li>
+                    <li>
+                        <i class="fas fa-fw fa-folder"></i>
+                        <div class="source-path">D:\Music</div>
+                        <a href="" title="Remove"><i class="fas fa-fw fa-times"></i></a>
+                    </li>
+                    <li>
+                        <i class="fas fa-fw fa-folder"></i>
+                        <div class="source-path">Z:\Music</div>
+                        <a href="" title="Remove"><i class="fas fa-fw fa-times"></i></a>
+                    </li>
+                    <li>
+                        <i class="fas fa-fw fa-folder"></i>
+                        <div class="source-path">X:\</div>
+                        <a href="" title="Remove"><i class="fas fa-fw fa-times"></i></a>
+                    </li>
+                    <li>
+                        <i class="fas fa-fw fa-folder"></i>
+                        <div class="source-path">/dev/null</div>
+                        <a href="" title="Remove"><i class="fas fa-fw fa-times"></i></a>
+                    </li>
+                </ul>
+
+                <div class="subheading">Other Music Providers</div>
+                <ul class="music-sources">
+                    <li>
+                        <i class="fab fa-fw fa-spotify"></i>
+                        <div>
+                            <span class="source-title">Spotify Premium</span>
+                            <span class="source-info">Not Implemented</span>
+                        </div>
+                        <a href="#" title="Connect source"><i class="fas fa-plug"></i></a>
+                    </li>
+                    <li>
+                        <i class="fab fa-fw fa-soundcloud"></i>
+                        <div>
+                            <span class="source-title">SoundCloud</span>
+                            <span class="source-info">Not Implemented</span>
+                        </div>
+                        <a href="#" title="Connect source"><i class="fas fa-plug"></i></a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Music Request Configuration -->
             <div id="requestcfg">
                 <div class="heading" data-i18n-string="requestCfg.heading"></div>
                 <div class="checkbox-container">
@@ -166,50 +158,23 @@
                 </div>
             </div>
             
+            <!-- Beetroot Settings -->
             <div id="settings">
                 <div class="heading" data-i18n-string="settings.heading">Settings</div>
-                
-                <div class="subheading" data-i18n-string="settings.sources.heading">Music Sources</div>
-                <ul class="music-sources">
-                    <li>
-                        <i class="fas fa-fw fa-file-audio"></i>
-                        <div>
-                            <span class="source-title" data-i18n-string="settings.sources.localSource">Local Music Files</span>
-                            <span class="source-info">C:\Users\rareshn\Music</span>
-                        </div>
-                        <a href="#" title="Disconnect source"><i class="fas fa-times"></i></a>
-                    </li>
-                    <li>
-                        <i class="fab fa-fw fa-spotify"></i>
-                        <div>
-                            <span class="source-title">Spotify Premium</span>
-                            <span class="source-info">pcneard225</span>
-                        </div>
-                        <a href="#" title="Connect source"><i class="fas fa-times"></i></a>
-                    </li>
-                    <li>
-                        <i class="fab fa-fw fa-soundcloud"></i>
-                        <div>
-                            <span class="source-title">SoundCloud</span>
-                            <span class="source-info">Not Connected</span>
-                        </div>
-                        <a href="#" title="Connect source"><i class="fas fa-plug"></i></a>
-                    </li>
-                </ul>
 
                 <div class="subheading" data-i18n-string="settings.misc.heading">Miscellaneous</div>
                 <div>
                     <span data-i18n-string="settings.misc.lang">Language: </span>
                     <select data-toggle="ui.language"></select>
                 </div>
-
+                <div>
+                    <span data-i18n-string="settings.misc.lang.author"></span>
+                    <span data-i18n-author></span>
+                </div>
             </div>
         </div>
 
         <!-- Scripts -->
         <script src="script.js"></script>
-        <script src="scripts/overlays.js"></script>
-        <script src="scripts/session.js"></script>
-        <script src="scripts/i18n.js"></script>
     </body>
 </html>
