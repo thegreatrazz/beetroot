@@ -33,6 +33,7 @@
     "@fortawesome/fontawesome-free": "^5.4.1",
     "electron-settings": "^3.2.0",
     "fast-glob": "^2.2.3",
+    "file-url": "^2.0.2",
     "id3-parser": "^2.0.0",
     "jquery": "^3.3.1"
   }

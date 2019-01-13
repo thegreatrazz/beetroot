@@ -1,10 +1,12 @@
 
+const { remote } = require("electron")
 const fg = require("fast-glob")
 const $ = require("jquery")
 
 var library = {
     songs: [{
-        path: "C:\\music.mp3"
+        path: "/home/rareshn/Music"
+        // It's a UNIX system! I know this!
     }],
     supportedMediaGlobs: [
         "**/*.ogg",     // OGG (no comment)
@@ -43,6 +45,20 @@ var internalEvents = {
         settings.set("library.localFolders", localFolders)
 
         library.updateMusicFiles()
+    },
+    addFolder: function() {
+        remote.dialog.showOpenDialog(remote.getCurrentWindow(), {
+            title: "Add new folder to library",
+            properties: ['openDirectory', 'multiSelections']
+        }, filePaths => {
+            if (filePaths == undefined) return
+
+            filePaths.forEach(val =>
+                settings.get("library.localFolders").push(val)
+            )
+            
+            library.updateMusicFiles()
+        })
     }
 }
 
@@ -53,6 +69,9 @@ function updateMediaFoldersUI() {
     // And create new ones
     settings.get("library.localFolders").forEach(folder =>
     {
+        // Shorten the path if this is inside our home folder
+        folder = folder.replace(process.env["HOME"], "~")
+
         // <li>
         //     <i class="fas fa-fw fa-folder"></i>
         //     <div class="source-path">C:\Users\rareshn\Music</div>
@@ -64,5 +83,8 @@ function updateMediaFoldersUI() {
         element.appendTo("#local-source-cfg")
     })
 }
+
+// Hook event for adding folders
+$("#librarycfg > a:nth-child(4)").click(internalEvents.addFolder)
 
 module.exports = library

@@ -1,6 +1,6 @@
 {
     "prettyName": "日本語 (Japanese)",
-    "author": "<ruby>日下田<rt>ひげた</rt></ruby> <ruby>俊也<rt>しゅんや</rt></ruby>、ラレシュ　ニストル",
+    "author": "<ruby>日下田<rt>ひげた</rt></ruby> <ruby>俊也<rt>しゅんや</rt></ruby>、ラレシュ ニストル",
 
     "body": {
         "app.name": "Beetroot - ＤＪパネル",
@@ -28,6 +28,7 @@
         "settings.sources.heading": "音楽ソース",
         "settings.sources.localSource": "音楽ライブラリ",
         "settings.misc.heading": "雑",
-        "settings.misc.lang": "言語"
+        "settings.misc.lang": "言語",
+        "settings.misc.lang.author": "翻訳者："
     }
 }

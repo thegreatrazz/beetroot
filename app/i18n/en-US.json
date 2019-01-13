@@ -9,8 +9,17 @@
         "header.requests.on":  "Requests: On",
         "header.requests.off": "Requests: Off",
         "header.random.on":    "Random: On",
+        "header.random.smart": "Random: Smart",
         "header.random.off":   "Random: Off",
         "header.settings":     "Settings",
+
+        "body.requests": "Requests",
+        "body.requests.accept": "Accept",
+        "body.requests.deny": "Deny",
+        "body.queue": "Queue",
+        "body.queue.move.up": "Move up",
+        "body.queue.move.down": "Move down",
+        "body.queue.remove": "Remove from Queue",
 
         "requestCfg.heading":          "Song Requests",
         "requestCfg.allow.title":      "Allow song requests",
@@ -28,6 +37,7 @@
         "settings.sources.heading": "Music Sources",
         "settings.sources.localSource": "Local Music Files",
         "settings.misc.heading": "Miscellaneous",
-        "settings.misc.lang": "Language"
+        "settings.misc.lang": "Language",
+        "settings.misc.lang.author": "Author: "
     }
 }

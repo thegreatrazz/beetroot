@@ -15,7 +15,7 @@
                     <li><a href="#" data-overlay="librarycfg" title="Music Library"><i class="fas fa-fw fa-music"></i></a></li>
                     <li><a href="#" data-overlay="requestcfg" title="Requests: Off"><i class="fas fa-fw fa-globe"></i></a></li>
                     <li><a href="#" data-toggle="song.random" title="Random: Off"><i class="fas fa-fw fa-random"></i></a></li>
-                    <li><a href="#" data-overlay="settings" title="Settings"><i class="fas fa-fw fa-cog"></i></a></li>
+                    <li><a href="#" data-overlay="settings" data-i18n-attr="title" data-i18n-string="header.settings" title="Settings"><i class="fas fa-fw fa-cog"></i></a></li>
                 </ul>
             </div>
             <div class="song-info">
@@ -24,7 +24,7 @@
             </div>
             <div class="player-controls">
                 <a class="player-skip" href="#"><i class="fas fa-fw fa-step-backward"></i></a>
-                <a class="player-play" href="#"><i class="fas fa-fw fa-pause"></i></a>
+                <a class="player-play" href="#"><i class="fas fa-fw fa-play"></i></a>
                 <a class="player-skip" href="#"><i class="fas fa-fw fa-step-forward"></i></a>
             </div>
         </header>
@@ -90,6 +90,7 @@
                 <div class="subheading">Your Music Library</div>
                 <ul class="music-sources" id="local-source-cfg"></ul>
                 <a href="#" class="btn">Add Folder</a>
+                <a href="#" class="btn">Queue My Library</a>
 
                 <div class="subheading">Other Music Providers</div>
                 <ul class="music-sources">
@@ -145,6 +146,12 @@
                 <div>
                     <span data-i18n-string="settings.misc.lang.author"></span>
                     <span data-i18n-author></span>
+                </div>
+
+                <div class="subheading" data-i18n-string="settings.about.heading">About</div>
+                <div>
+                    Beetroot [DEVBUILD]<br>
+                    <small>&copy; 2018, 2019 Raresh Nistor</small>
                 </div>
             </div>
         </div>

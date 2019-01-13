@@ -243,6 +243,7 @@ header {
 
     header > .song-info {
         padding: 16px 0;
+        overflow: hidden;
     }
 
         header > .song-info > .song-artist {
@@ -253,7 +254,7 @@ header {
         }
 
         header > .song-info > .song-title {
-            font-size: 32px;
+            font-size: 24px;
             font-weight: 300;
             padding: 0 12px;
         }

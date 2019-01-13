@@ -9,11 +9,17 @@
 
 //** COMPONENTS **///
 
+// Others
+const fileUrl = require("file-url")
+const path = require("path")
+const $ = require("jquery")
+
 // Beetroot components
 const settings = require("./scripts/settings")
 const i18n = require("./scripts/i18n")
 const library = require("./scripts/library")
 const overlays = require("./scripts/overlays")
+const player = require("./scripts/player")
 
 //** COMPONENT HOOKS **//
 
@@ -32,7 +38,23 @@ settings.hooks.push((key, content) =>
     i18n.setLanguage(content)
 })
 
+player.events.on("play", x => {
+    $(".fa-play").removeClass("fa-play").addClass("fa-pause")
+    $("header .song-artist").text(x.artist)
+    $("header .song-title").text(x.title || path.basename(player.playlist[player.playlistIndex]))
+})
+player.events.on("resume", x => {
+    $(".fa-play").removeClass("fa-play").addClass("fa-pause")
+})
+player.events.on("pause", x => {
+    $(".fa-pause").removeClass("fa-pause").addClass("fa-play")
+})
+
 //** INITIALISATION **//
 
 // Update the music files
 library.updateMusicFiles()
+
+function loadLibraryToPlayerForTesting() {
+    library.getMusicFiles(files => { player.playlist = files })
+}

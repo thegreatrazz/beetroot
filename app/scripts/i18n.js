@@ -123,8 +123,15 @@ var i18n = {
         // Look for strings needed to be changed
         $("[data-i18n-string]").each((i, e) =>
         {
-            // For each, look for the ID and apply
-            $(e).html(i18n.getString($(e).data("i18n-string")))
+            // Get string to show
+            let string = i18n.getString($(e).attr("data-i18n-string"))
+
+            // If the strings want us to update an attribute, do that
+            console.log($(e).attr("data-i18n-attr") !== undefined)
+            if ($(e).attr("data-i18n-attr") !== undefined)
+                $(e).attr($(e).attr("data-i18n-attr"), string)
+            else
+                $(e).html(string)
         })
     },
 

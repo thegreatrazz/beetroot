@@ -7,6 +7,8 @@
 //
 
 const $ = require("jquery")
+const fs = require("fs")
+const path = require("path")
 
 /**
  * Configuration, do not change variables directly
@@ -18,8 +20,7 @@ var config = {
     },
     library: {
         localFolders: [
-            "C:\\Users\\rareshn\\Music",
-            "D:\\Music"
+            "/home/rareshn/Music"
         ],
         providers: {
             spotify: null,
@@ -158,7 +159,12 @@ var settings = {
             // (ev) => console.log(ev.target.value)
             settings.set($(ev.target).attr("data-toggle"), ev.target.value)
         }
-    }
+    },
+
+    /**
+     * Node.js package metadata
+     */
+    package: JSON.parse(fs.readFileSync(path.join(__dirname, "../..", "package.json")))
 }
 
 // Settings toggle
