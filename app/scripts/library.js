@@ -4,10 +4,8 @@ const fg = require("fast-glob")
 const $ = require("jquery")
 
 var library = {
-    songs: [{
-        path: "/home/rareshn/Music"
-        // It's a UNIX system! I know this!
-    }],
+    // NOTE: the songs parameter wasn't used to begin with
+
     supportedMediaGlobs: [
         "**/*.ogg",     // OGG (no comment)
         "**/*.mp3",     // MP3 (lame)
@@ -15,6 +13,11 @@ var library = {
         "**/*.flac",    // The fucking lazy audiophile's codec
         "**/*.wma"      // Windows Media Audio
     ],
+
+    /**
+     * Goes through the folders defined in settings and returns (or callbacks
+     * for async) a list of filenames.
+     */
     getMusicFiles: (callback) =>
     {
         var mediaFilenames = [ ]
@@ -28,8 +31,15 @@ var library = {
                 .catch(reason => { error = reason })
         })
 
-        callback(mediaFilenames, error)
+        if (typeof callback === "function")
+            callback(mediaFilenames, error)
+        
+        return mediaFilenames
     },
+
+    /**
+     * Updates other modules on music file status
+     */
     updateMusicFiles: function()
     {
         updateMediaFoldersUI()
@@ -39,6 +49,8 @@ var library = {
 var internalEvents = {
     localPathDelete: function()
     {
+        // This function is marked for re-factoring
+
         var localFolders = settings.get("library.localFolders")
         var index = localFolders.indexOf($(this).siblings(".source-path").text())
         if (index !== -1) localFolders.splice(index, 1)
@@ -47,6 +59,8 @@ var internalEvents = {
         library.updateMusicFiles()
     },
     addFolder: function() {
+        // This function is marked for refactoring
+
         remote.dialog.showOpenDialog(remote.getCurrentWindow(), {
             title: "Add new folder to library",
             properties: ['openDirectory', 'multiSelections']
@@ -63,6 +77,8 @@ var internalEvents = {
 }
 
 function updateMediaFoldersUI() {
+    // This function is marked for refactoring
+
     // First clear out existing folders
     $("#local-source-cfg").children().remove()
 
@@ -85,6 +101,7 @@ function updateMediaFoldersUI() {
 }
 
 // Hook event for adding folders
+//      This function is marked for refactoring
 $("#librarycfg > a:nth-child(4)").click(internalEvents.addFolder)
 
 module.exports = library

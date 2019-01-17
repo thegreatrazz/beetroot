@@ -20,6 +20,7 @@ const i18n = require("./scripts/i18n")
 const library = require("./scripts/library")
 const overlays = require("./scripts/overlays")
 const player = require("./scripts/player")
+const server = require("./scripts/server")
 
 //** COMPONENT HOOKS **//
 
@@ -51,6 +52,12 @@ player.events.on("pause", x => {
 })
 
 //** INITIALISATION **//
+
+// Load the settings on start-up
+settings.load()
+
+// Load the default language before moving on
+i18n.setLanguage(settings.get("ui.language"))
 
 // Update the music files
 library.updateMusicFiles()

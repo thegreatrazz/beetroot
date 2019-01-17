@@ -123,11 +123,9 @@ var i18n = {
         // Look for strings needed to be changed
         $("[data-i18n-string]").each((i, e) =>
         {
-            // Get string to show
             let string = i18n.getString($(e).attr("data-i18n-string"))
-
-            // If the strings want us to update an attribute, do that
-            console.log($(e).attr("data-i18n-attr") !== undefined)
+            
+            // Get string to show
             if ($(e).attr("data-i18n-attr") !== undefined)
                 $(e).attr($(e).attr("data-i18n-attr"), string)
             else
@@ -143,9 +141,6 @@ var i18n = {
         return i18n.langData.body[id]
     },
 }
-
-// Load the default language before moving on
-i18n.setLanguage(i18n.lang)
 
 // Load the languages into the language list
 i18n.getLanguages().forEach((lang, i) =>

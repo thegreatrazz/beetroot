@@ -9,6 +9,7 @@
 const $ = require("jquery")
 const fs = require("fs")
 const path = require("path")
+const { app } = require("electron").remote
 
 /**
  * Configuration, do not change variables directly
@@ -16,7 +17,7 @@ const path = require("path")
 var config = {
     // This is the configuration
     song: {
-        repeat: true  // Plays songs "smart-randomly"
+        repeat: "smart"  // Plays songs "smart-randomly"
     },
     library: {
         localFolders: [
@@ -31,7 +32,7 @@ var config = {
         enabled: false,
         serverSession: "a-completely-random-guid-used-for-client-verification",
         serverId: "a-6-character-hex",
-        serverUrl: "https://beets.thegreatrazz.nz/$"
+        serverUrl: "https://localhost:6502/api/$.php"
     },
     ui: {
         language: "en-US"
@@ -42,6 +43,8 @@ var config = {
  * Object to prevent messing up the window
  */
 var settings = {
+    savePath: path.join(app.getPath("userData"), "settings.json"),
+
     /**
      * Gets the setting value for the key
      */
@@ -140,7 +143,35 @@ var settings = {
      */
     flush: function() 
     {
-        console.warn("Settings for Beetroot are not save-able for the time being")
+        // JSONise the settings and save them to disk
+        fs.writeFile(settings.savePath, JSON.stringify(config), v => {
+            console.log(v)
+        })
+    },
+
+    /**
+     * Load the configuration from hard drive
+     */
+    load: function() {
+        // Do the opposite of the flush() function
+        fs.readFile(settings.savePath, { encoding: "utf8" }, (err, data) => {
+            if (err) {
+                // Alert and quit
+                alert("Beetroot failed loading the configuration file.\n" + 
+                      "If this issue keeps occuring, please open an issue on GitHub.")
+                
+                // There will be no changes, return
+                return
+            }
+
+            // Otherwise, just load the data.
+            try {
+                config = JSON.parse(data)
+            } catch (ex) {
+                alert("Beetroot failed loading the configuration file.\n\n" +
+                      "There is a parsing error: " + ex)
+            }
+        })
     },
 
     /**
@@ -167,7 +198,7 @@ var settings = {
     package: JSON.parse(fs.readFileSync(path.join(__dirname, "../..", "package.json")))
 }
 
-// Settings toggle
+// Settings toggle (move to UI)
 $("[data-toggle]").on("change", settings.events.toggleChange)
 
 // Export settings
