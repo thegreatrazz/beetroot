@@ -5,6 +5,11 @@
     "body": {
         "app.name": "Beetroot - DJ Panel",
 
+        "titlebar.name": "DJ Panel",
+        "titlebar.settings": "Settings",
+        "titlebar.minimize": "Minimize",
+        "titlebar.close": "Close",
+
         "header.nowPlaying":   "Now Playing",
         "header.requests.on":  "Requests: On",
         "header.requests.off": "Requests: Off",
@@ -13,6 +18,7 @@
         "header.random.off":   "Random: Off",
         "header.settings":     "Settings",
 
+        "body.noAuthor": "Unknown Author",
         "body.requests": "Requests",
         "body.requests.accept": "Accept",
         "body.requests.deny": "Deny",

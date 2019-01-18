@@ -10,6 +10,7 @@
 //** COMPONENTS **///
 
 // Others
+const electron = require("electron").remote
 const fileUrl = require("file-url")
 const path = require("path")
 const $ = require("jquery")
@@ -24,10 +25,6 @@ const server = require("./scripts/server")
 
 //** COMPONENT HOOKS **//
 
-// If we're running on a Mac, get rid of "Now Playing"
-if (process.platform === "darwin")
-    $(".player-status span").remove()
-
 // Hook into the setting of ui.language
 settings.hooks.push((key, content) =>
 {
@@ -41,14 +38,17 @@ settings.hooks.push((key, content) =>
 
 player.events.on("play", x => {
     $(".fa-play").removeClass("fa-play").addClass("fa-pause")
-    $("header .song-artist").text(x.artist)
+    $("header .song-artist").text(x.artist || i18n.getString("body.noAuthor"))
     $("header .song-title").text(x.title || path.basename(player.playlist[player.playlistIndex]))
+    $(".player-status").addClass("playing")
 })
 player.events.on("resume", x => {
     $(".fa-play").removeClass("fa-play").addClass("fa-pause")
+    $(".player-status").addClass("playing")
 })
 player.events.on("pause", x => {
     $(".fa-pause").removeClass("fa-pause").addClass("fa-play")
+    $(".player-status").removeClass("playing")
 })
 
 //** INITIALISATION **//
@@ -65,3 +65,6 @@ library.updateMusicFiles()
 function loadLibraryToPlayerForTesting() {
     library.getMusicFiles(files => { player.playlist = files })
 }
+
+// Insert the UI glue code
+document.write("<script src=\"scripts/ui.js\"></script>")

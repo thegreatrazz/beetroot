@@ -2,6 +2,7 @@
 var path = require("path")
 var { app, BrowserWindow } = require("electron")
 
+var debug = process.argv.indexOf("--debug-mode") > -1
 var win
 
 function createWindow()
@@ -10,7 +11,10 @@ function createWindow()
     let browserWindowOpts = {
         width: 360, height: 500,
         useContentSize: true,
-        minWidth: 360, maxWidth: 360
+        minWidth: 360, maxWidth: 360,
+        fullscreenable: false,
+        maximizable: false,
+        show: debug
     }
 
     switch (process.platform) {
@@ -24,7 +28,7 @@ function createWindow()
         case "darwin":
             console.log("Hello macOS (Darwin) users!")
 
-            browserWindowOpts["titleBarStyle"] = "hiddenInset"
+            browserWindowOpts["titleBarStyle"] = "hidden"
 
             break;
 
@@ -48,7 +52,13 @@ function createWindow()
 
     win.loadFile(path.join(__dirname, "app", "index.html"))
 
-    win.webContents.openDevTools({ mode: "detach" })
+    if (debug)
+        win.webContents.openDevTools({ mode: "detach" })
+
+
+    win.on("ready-to-show", () => {
+        win.show()
+    })
 }
 
 app.on("ready", createWindow)

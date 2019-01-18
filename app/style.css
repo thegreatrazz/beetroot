@@ -145,7 +145,7 @@ input[type=checkbox]
     align-items: center;
     opacity: 0;
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 22px; left: 0; right: 0; bottom: 0;
     pointer-events: none;
     transition: opacity .1s;
     z-index: 50;
@@ -182,14 +182,52 @@ input[type=checkbox]
     pointer-events: unset;
 }
 
+/* Title bar */
+
+#titlebar {
+    background: linear-gradient(to right, #01579B, #880E4F);
+    color: #fafafa;
+    font-size: 12px;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-app-region: drag;
+}
+
+#titlebar-controls {
+    display: flex;
+    position: absolute;
+    top: 0; right: 0;
+}
+
+#titlebar-controls a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 22px;
+    -webkit-app-region: no-drag;
+    transition: background .1s;
+}
+
+    #titlebar-controls a:hover {
+        background: rgba(255, 255, 255, .2);
+    }
+
+    #titlebar-controls a:active {
+        background: rgba(255, 255, 255, .5);
+    }
+
 /* Header */
 
 header {
-    background: linear-gradient(to bottom, #e74c3c, #c0392b);
+    background: radial-gradient(circle at top left, #03A9F4, #E91E63);
+    /* background: linear-gradient(to bottom right, #03A9F4, #E91E63); */
     color: #FAFAFA;
     position: relative;
     padding-bottom: 25px;
-    height: 156px;
+    /* height: 156px; */
     box-shadow: 0 2px 2px rgba(0, 0, 0, .2);
     z-index: 5;
 }
@@ -198,14 +236,19 @@ header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        -webkit-app-region: drag;
     }
 
         header > .status-bar .player-status {
             font-size: 12px;
             text-transform: uppercase;
             padding-left: 12px;
+            opacity: 0;
+            transition: opacity .5s;
         }
+
+            header > .status-bar .player-status.playing {
+                opacity: 1;
+            }
 
         header > .status-bar ul {
             display: inline-block;
@@ -228,7 +271,6 @@ header {
                     border-radius: 50%;
                     transition: background .1s;
                     cursor: unset;
-                    -webkit-app-region: no-drag;
                 }
 
                     header > .status-bar ul li a:hover {
@@ -242,7 +284,7 @@ header {
                     }
 
     header > .song-info {
-        padding: 16px 0;
+        /* padding: 16px 0; */
         overflow: hidden;
     }
 
@@ -251,12 +293,14 @@ header {
             padding-left: 12px;
             font-style: italic;
             font-weight: 500;
+            white-space: nowrap;
         }
 
-        header > .song-info > .song-title {
+        header > .song-info .song-title-container {
             font-size: 24px;
             font-weight: 300;
             padding: 0 12px;
+            white-space: nowrap;
         }
 
     header > .player-controls {

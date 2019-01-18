@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "electron .",
-    "make": "./build.js"
+    "make": "./build.js",
+    "debug": "electron . --debug-mode"
   },
   "repository": {
     "type": "git",
