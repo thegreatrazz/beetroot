@@ -32,14 +32,14 @@
                 </div>
             </div>
             <div class="player-controls">
-                <a class="player-skip" href="#"><i class="fas fa-fw fa-step-backward"></i></a>
+                <a class="player-skip" data-player-action="back" href="#"><i class="fas fa-fw fa-step-backward"></i></a>
                 <a class="player-play" href="#"><i class="fas fa-fw fa-play"></i></a>
-                <a class="player-skip" href="#"><i class="fas fa-fw fa-step-forward"></i></a>
+                <a class="player-skip" data-player-action="skip" href="#"><i class="fas fa-fw fa-step-forward"></i></a>
             </div>
         </header>
         <main>
             <div class="heading">Requests</div>
-            <ul>
+            <ul id="song-requests">
                 <li>
                     <div class="song-info">
                         <span class="song-artist">Smash Mouth</span>
@@ -52,8 +52,8 @@
                 </li>
                 <li>
                     <div class="song-info">
-                        <span class="song-artist">Smash Mouth</span>
-                        <span class="song-title">All Star <i class="fab fa-fw fa-spotify"></i></span>
+                        <span class="song-artist">I Bought Omega Ruby on the 3DS and People Are Calling Me Otaku</span>
+                        <span class="song-title">Daft Punk - Get Lucky (Official Audio) ft. Pharrell Williams, Nile Rodgers.mp3</span>
                     </div>
                     <div class="song-actions">
                         <a href="#"><i class="fas fa-fw fa-check"></i></a>
@@ -62,7 +62,7 @@
                 </li>
             </ul>
             <div class="heading">Queue</div>
-            <ul>
+            <ul id="song-queue">
                 <li>
                     <div class="song-info">
                         <span class="song-artist">Smash Mouth</span>

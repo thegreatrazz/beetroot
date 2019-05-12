@@ -5,6 +5,11 @@
     "body": {
         "app.name": "Beetroot - Panou DJ",
 
+        "titlebar.name": "Beetroot Player",
+        "titlebar.settings": "Setări",
+        "titlebar.minimize": "Minimizați",
+        "titlebar.close": "Închideți",
+
         "header.nowPlaying":   "Now Playing",
         "header.requests.on":  "Cereri: Permise",
         "header.requests.off": "Cereri: Oprite",
@@ -13,6 +18,7 @@
         "header.random.off":   "Aleatoriu: Dezactivat",
         "header.settings":     "Setări",
 
+        "body.noAuthor": "Autor nedefinit",
         "body.requests": "Cereri",
         "body.requests.accept": "Acceptați",
         "body.requests.deny": "Respingeți",

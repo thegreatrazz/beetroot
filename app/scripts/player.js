@@ -51,6 +51,13 @@ let audioInterface = new Audio()
  */
 function play(index = this.playlistIndex) {
     if (typeof index === "number") {
+        index = index < 0 ? 0 : index     // Clip negative numbers
+        
+        // If there is another song in the playlist, play that
+        audioInterface.addEventListener("ended", () => {
+            this.skip()
+        })
+
         if (!this.audioInterface.paused)
             this.audioInterface.pause()
 
@@ -98,6 +105,7 @@ function pause() {
 function skip() {
     // Up the index count
     this.playlistIndex++
+    this.play()
 }
 
 /**
@@ -114,6 +122,7 @@ function replay() {
 function back() {
     // Down the index count
     this.playlistIndex--
+    this.play()
 }
 
 function getMetadata(index = this.playlistIndex) {
@@ -136,5 +145,5 @@ module.exports = {
     playlist, playlistIndex,
     random, randomAlgo,
     audioInterface, getMetadata, events,
-    play, pause, skip, replay, back
+    play, pause, resume, skip, replay, back
 }

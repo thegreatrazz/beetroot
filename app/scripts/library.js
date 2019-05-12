@@ -6,6 +6,10 @@ const $ = require("jquery")
 var library = {
     // NOTE: the songs parameter wasn't used to begin with
 
+    /**
+     * These are the currently supported media files (hope codecs are installed
+     * and that 😅)
+     */
     supportedMediaGlobs: [
         "**/*.ogg",     // OGG (no comment)
         "**/*.mp3",     // MP3 (lame)

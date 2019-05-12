@@ -1,18 +1,31 @@
 {
     "prettyName": "日本語 (Japanese)",
     "author": "<ruby>日下田<rt>ひげた</rt></ruby> <ruby>俊也<rt>しゅんや</rt></ruby>、ラレシュ ニストル",
-
+    
     "body": {
-        "app.name": "Beetroot - ＤＪパネル",
+        "app.name": "Beetroot プレイヤー",
+
+        "titlebar.name": "Beetroot プレイヤー",
+        "titlebar.settings": "設定",
+        "titlebar.minimize": "Minimize",
+        "titlebar.close": "Close",
 
         "header.nowPlaying":   "ＮＯＷ　ＰＬＡＹＩＮＧ",
-        "header.requests.on":  "Requests: On",
-        "header.requests.off": "Requests: Off",
-        "header.random.on":    "Random: On",
-        "header.random.off":   "Random: Off",
-        "header.settings":     "設定",
+        "header.requests.on":  "リクエスト：オン",
+        "header.requests.off": "リクエスト：オフ",
+        "header.random.on":    "ランダム：オン",
+        "header.random.off":   "ランダム：オフ",
 
-        "requestCfg.heading":          "Song Requests",
+        "body.noAuthor": "作者不明",
+        "body.requests": "リクエスト",
+        "body.requests.accept": "Accept",
+        "body.requests.deny": "Deny",
+        "body.queue": "キュー",
+        "body.queue.move.up": "Move up",
+        "body.queue.move.down": "Move down",
+        "body.queue.remove": "Remove from Queue",
+
+        "requestCfg.heading":          "歌のリクエスト",
         "requestCfg.allow.title":      "Allow song requests",
         "requestCfg.allow.sub.on":     "Guests will be able to request songs",
         "requestCfg.allow.sub.off":    "Guests will <b>not</b> be able to request songs",
@@ -22,7 +35,7 @@
         "requestCfg.progress.action":  "Giving the server a kick...",
         "requestCfg.progress.failConn": "The server failed connecting. Connect to the internet or try again later.",
         "requestCfg.progress.failMisc": "Something happened but we can't describe it. We left a log file in \"$\".",
-        "requestCfg.progress.success": "People could request songs by going to \"$\"",
+        "requestCfg.progress.success": "ゲストは“$”で曲をリクエストできます。",
 
         "settings.heading": "設定",
         "settings.sources.heading": "音楽ソース",

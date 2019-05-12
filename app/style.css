@@ -109,7 +109,7 @@ input[type=checkbox]
         content: "";
         display: block;
         width: 14px; height: 14px;
-        background: #999;
+        background: #FF4081;
         border-radius: 50%;
         position: absolute;
         left: 1px;
@@ -118,7 +118,7 @@ input[type=checkbox]
     }
     
     input[type=checkbox]:checked::after {
-        background: #e74c3c;
+        background: #00C853;
         left: 17px;
     }
 
@@ -284,7 +284,7 @@ header {
                     }
 
     header > .song-info {
-        /* padding: 16px 0; */
+        padding: 16px 0;
         overflow: hidden;
     }
 
@@ -359,6 +359,7 @@ header {
 main {
     position: fixed;
     top: 156px; left: 0; right: 0; bottom: 0;
+    padding-top: 12px;
     overflow-y: auto;
 }
 
@@ -381,6 +382,17 @@ main {
         
             main > ul > li .song-info {
                 padding: 8px 12px;
+                overflow-x: hidden;
+                white-space: nowrap;
+                position: relative;
+            }
+
+            main > ul > li .song-info::after {
+                content: "";
+                position: absolute;
+                top: 0; right: 0; bottom: 0;
+                width: 24px;
+                background: linear-gradient(to right, transparent, #FAFAFA);
             }
 
             main > ul > li .song-info .song-artist {
@@ -392,10 +404,11 @@ main {
             main > ul > li .song-info .song-title {
                 display: block;
                 font-size: 18px;
-                font-weight: 300px;
+                font-weight: 300;
             }
 
         main > ul > li .song-actions {
+            flex-shrink: 0;
             font-size: 0;
         }
 

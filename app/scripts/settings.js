@@ -48,8 +48,7 @@ var settings = {
     /**
      * Gets the setting value for the key
      */
-    get: function(key)
-    {
+    get: function (key) {
         // The key should is a string
         if (typeof key !== "string")
             throw "'key' is not a string.";
@@ -57,10 +56,9 @@ var settings = {
         // Separate the key into objects
         var keySections = key.split(".")
         var iterObject = config  // The object we're looking for, start with config
-        
+
         // For every dot, we need to access that index of an array
-        keySections.forEach((section) =>
-        {
+        keySections.forEach((section) => {
             iterObject = iterObject[section]
         })
 
@@ -73,8 +71,7 @@ var settings = {
     /**
      * 
      */
-    set: function(key, content)
-    {
+    set: function (key, content) {
         /// PRE-FLIGHT CHECKS ///
 
         // The key should be a string
@@ -96,14 +93,12 @@ var settings = {
         // !! TODO: Find a better, more efficient way to do this
 
         // For every dot, we need to access that index of an array
-        for (var i = 0; i < keySections.length; i++)
-        {
+        for (var i = 0; i < keySections.length; i++) {
             // I opted for the classical "for" loop since we need to stop right
             // before the last one.
-            
+
             // The last one needs to be applied specially
-            if (i === keySections.length - 1)
-            {
+            if (i === keySections.length - 1) {
                 // This need to be applied as an object
                 iterObject[keySections[i]] = content
 
@@ -124,13 +119,11 @@ var settings = {
         settings.hooks.forEach((hook) => {
             // The whole method shouldn't go down altogether
             // just because something fell of the hook (aka exceptions)
-            try
-            {
+            try {
                 // Pass the key and content to the hook
                 hook(key, content)
             }
-            catch (ex)
-            {
+            catch (ex) {
                 // We can log the error just in case
                 console.error("Exception Occurred. " + ex)
             }
@@ -141,8 +134,7 @@ var settings = {
     /**
      * Flushes the configuration to hard drive
      */
-    flush: function() 
-    {
+    flush: function () {
         // JSONise the settings and save them to disk
         fs.writeFile(settings.savePath, JSON.stringify(config), v => {
             console.log(v)
@@ -152,14 +144,14 @@ var settings = {
     /**
      * Load the configuration from hard drive
      */
-    load: function() {
+    load: function () {
         // Do the opposite of the flush() function
         fs.readFile(settings.savePath, { encoding: "utf8" }, (err, data) => {
             if (err) {
                 // Alert and quit
-                alert("Beetroot failed loading the configuration file.\n" + 
-                      "If this issue keeps occuring, please open an issue on GitHub.")
-                
+                alert("Beetroot failed loading the configuration file.\n" +
+                    "If this issue keeps occuring, please open an issue on GitHub.")
+
                 // There will be no changes, return
                 return
             }
@@ -169,7 +161,7 @@ var settings = {
                 config = JSON.parse(data)
             } catch (ex) {
                 alert("Beetroot failed loading the configuration file.\n\n" +
-                      "There is a parsing error: " + ex)
+                    "There is a parsing error: " + ex)
             }
         })
     },
@@ -177,16 +169,16 @@ var settings = {
     /**
      * Hooks for the set() method
      */
-    hooks: [ function(key, content) {
-        console.log(`Demo hook.\n\nKey: ${key}\nContent: ${content}`)
-    } ],
+    hooks: [function (key, content) {
+        // Create a default hook which saves on change
+        this.flush()
+    }],
 
     /**
      * Events for UI events
      */
     events: {
-        toggleChange: (ev) =>
-        {
+        toggleChange: (ev) => {
             // (ev) => console.log(ev.target.value)
             settings.set($(ev.target).attr("data-toggle"), ev.target.value)
         }

@@ -10,8 +10,8 @@
  * It will be inserted into regular JS after script.js.
  */
 
-// macOS doesn't need window controls
-if (process.platform === "darwin") {
+// macOS && Linux don't need window controls
+if (process.platform === "darwin" || process.platform === "linux") {
     $("#titlebar-controls [data-window-action]").remove()
 }
 

@@ -1,0 +1,41 @@
+
+root = true
+
+#
+# General rules
+#
+
+[*]
+chatset = utf-8                 # Everything uses Unicode nowadays
+end_of_line = lf                # UNIX-style line endings
+insert_final_newline = true     # It's the final new-line! (for Bella the Cat)
+
+#
+# Programming
+#
+
+[*.html]
+
+[*.css]
+
+[*.js]
+indent_size = 4                     # Indent with spaces
+indent_style = space                
+trim_trailing_whitespace = true     # Get rid of wasteful chars
+max_line_length = 80                # Keeps things readable is side-by-side
+indent_brace_style = java           # Bracket line
+curly_bracket_next_line = false
+quote_type = double                 # 
+spaces_around_operators = true
+
+#
+# Data structures
+#
+
+[*.json]
+
+#
+# Documentation
+#
+
+[*.md]
