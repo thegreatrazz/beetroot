@@ -1,8 +1,8 @@
 
 //
 // Beetroot Session Manager
-// 
-// This is the code that creates, manages, saves, 
+//
+// This is the code that creates, manages, saves,
 // and handles the behind the scenes triggers and variables for Beetroot
 //
 
@@ -69,7 +69,7 @@ var settings = {
     },
 
     /**
-     * 
+     *
      */
     set: function (key, content) {
         /// PRE-FLIGHT CHECKS ///
@@ -121,7 +121,7 @@ var settings = {
             // just because something fell of the hook (aka exceptions)
             try {
                 // Pass the key and content to the hook
-                hook(key, content)
+                hook(key, content, this)
             }
             catch (ex) {
                 // We can log the error just in case
@@ -169,9 +169,9 @@ var settings = {
     /**
      * Hooks for the set() method
      */
-    hooks: [function (key, content) {
+    hooks: [function (key, content, context) {
         // Create a default hook which saves on change
-        this.flush()
+        context.flush()
     }],
 
     /**

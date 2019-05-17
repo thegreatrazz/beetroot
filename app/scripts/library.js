@@ -14,7 +14,7 @@ var library = {
         "**/*.ogg",     // OGG (no comment)
         "**/*.mp3",     // MP3 (lame)
         "**/*.wav",     // Windows WAV
-        "**/*.flac",    // The fucking lazy audiophile's codec
+        "**/*.flac",    // The ****ing lazy audiophile's codec
         "**/*.wma"      // Windows Media Audio
     ],
 
@@ -37,7 +37,7 @@ var library = {
 
         if (typeof callback === "function")
             callback(mediaFilenames, error)
-        
+
         return mediaFilenames
     },
 
@@ -74,7 +74,7 @@ var internalEvents = {
             filePaths.forEach(val =>
                 settings.get("library.localFolders").push(val)
             )
-            
+
             library.updateMusicFiles()
         })
     }

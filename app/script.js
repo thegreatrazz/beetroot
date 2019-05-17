@@ -24,11 +24,7 @@ const server = require("./scripts/server");
 
 //** COMPONENT HOOKS **//
 
-function aPerfectlyWholesomeFunctionWhichCallsALessWholesomeOne() {
-    return fuckingHell()
-}
-
-function fuckingHell() {
+function listMusicQueue() {
     let htmlQueue = $("#song-queue").empty();
     let songQueue = player.playlist;
 
@@ -145,7 +141,8 @@ $("#librarycfg > a:nth-child(5)").click(ev => {
     library.getMusicFiles(files => {
         console.log("No friends to play music with? No problem.");
         console.log("I'd use a better player like VLC though.");
-        player.playlist = files;
+        player.playlist = files
+        setTimeout(listMusicQueue, 1000)
     });
 });
 

@@ -5,7 +5,7 @@
     "body": {
         "app.name": "Beetroot Player",
 
-        "titlebar.name": "DJ Panel",
+        "titlebar.name": "Beetroot Player",
         "titlebar.settings": "Settings",
         "titlebar.minimize": "Minimize",
         "titlebar.close": "Close",
