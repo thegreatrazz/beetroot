@@ -1,5 +1,16 @@
 # Beetroot Player
 
+> The refactoring branch contains code that is in the middle of being rewritten
+> and my not work at all.
+>
+> Long story short, over the year of working on this project. The codebase got
+> stale and I'm trying to clean it up in a way that is acceptable to my 
+> standards (as of August 2019)
+>
+> The main target of this refactoring are all the files in the
+> [scripts](app/scripts) folder and to make them as separate as possible, with
+> the only one linking all of them together being a singular UI script.
+
 Beetroot Player is a "boombox" sort-of software which allows you and the
 members of your group to queue and play music.
 

@@ -1,149 +1,114 @@
 
-// Node modules
-const fs = require("fs")
-const { parse } = require("id3-parser")
-const fileUrl = require("file-url")
-
-// Events
-const EventEmitter = require("events")
+const EventEmitter = require('events')
 let events = new EventEmitter()
 
-// Playlist variables
+/** Functions for interaction with the music player system */
+let player = {
+    /** A list of song objects */
+    playlist: [ ],
 
-/**
- * Playlist for the player
- */
-let playlist = []
-// NOTE TO SELF: Don't be an idiot and SET the variable from outside.
-// Use the prototype methods, you numbnut.
+    /** The currently playing song */
+    playlistIndex: -1,
 
-/**
- * Currently playing index in playlist
- */
-let playlistIndex = -1
+    /** Whether this playlist is playing randomly */
+    random: false,
 
-// Random option variables
+    /** The list of indexes to be played randomly */
+    randomList = [ ],
 
-/**
- * Whether to pick random elements from the playlist
- */
-let random = false
+    /** The cores of various players */
+    playerCores: { },
 
-/**
- * The algorithm to user for randomisation
- * 
- * * "smart" - Picks a song that hasn't been played in this cycle.
- * * "dumb" - Just pick a number at random and play 
- */
-let randomAlgo = "smart"
+    /** Listen to an event */
+    on: (...args) => events.on(...args),
 
-// HTML audio interface
+    /** Listen to an eventy once */
+    off: (...args) => events.once(...args),
 
-/**
- * HTMLAudioElement interface
- */
-let audioInterface = new Audio()
+    /** Get the current song's playing core */
+    getCurrentCore: () => this.playlist[this.playlistIndex].core,
 
-// Public functions
+    /** Play a song from the playlist */
+    play: index => {
+        // stop the current song
+        this.getCurrentCore().pause()
 
-/**
- * Plays a song in the playlist
- */
-function play(index = this.playlistIndex) {
-    if (typeof index === "number") {
-        index = index < 0 ? 0 : index     // Clip negative numbers
-        
-        // If there is another song in the playlist, play that
-        audioInterface.addEventListener("ended", () => {
-            this.skip()
-        })
-
-        if (!this.audioInterface.paused)
-            this.audioInterface.pause()
-
-        this.audioInterface.src = this.playlist[index]
-        this.audioInterface.play()
         this.playlistIndex = index
+        let song = this.playlist[index]
+        let core = song.core
+        core.play(song)
 
-        let id3Meta
+        // emit an event
+        events.emit('play', song)
+    },
 
-        try {
-            id3Meta = this.getMetadata()
-        } catch (ex) {
-            throw ex
+    /** Pause the currently playing song */
+    pause: () => {
+        this.getCurrentCore().pause()
+        events.emit('pause')
+    },
+
+    /** Resume the currently playing song (from pause) */
+    resume: () => {
+        this.getCurrentCore().play()
+        events.emit('play', this.playlist[this.playlistIndex])
+    },
+
+    /** Go one song back */
+    back: () => {
+        if (--this.playlistIndex < 0)
+            this.playlistIndex = this.playlist.length - 1
+        this.play(this.playlistIndex)
+    },
+
+    /** Go ones song next */
+    next: () => {
+        if (++this.playlistIndex > this.playlist.length)
+            this.playlistIndex = 0
+        this.play(this.playlistIndex)
+    },
+
+    /** Look up song */
+    lookup: ref => {
+        if (typeof ref !== 'string') return undefined
+        
+        let coreID = ref.substring(0, ref.indexOf(':'))
+        let core = this.playerCores[coreID]
+
+        return core.getSong(ref)
+    },
+
+    /** Add song to playlist */
+    addSong: song => {
+        if (typeof song      !== 'object') throw new TypeError('Song is invalid')
+        if (typeof song.ref  !== 'string') throw new TypeError('Non-existent song reference')
+        if (typeof song.core !== 'object') throw new TypeError('Song doesn\'t belong to an installed core')
+
+        this.playlist.push(song)
+        events.emit('playlist-add', song)
+    },
+
+    /** Register player */
+    registerCore: core => {
+        // check if the core is an object and has all the parts we need
+        if (typeof core !== "object") throw new TypeError('Core is not an object')
+
+        if (typeof core.refID    === 'function'
+        &&  typeof core.play     === 'function' 
+        &&  typeof core.pause    === 'function'
+        &&  typeof core.getSong  === 'function'
+        &&  typeof core.register === 'function') {
+            // register the core
+            core.register(this, events)
+
+            // get the core ID and save the core as that
+            let coreID = core.refID()
+            this.playerCores[coreID] = core
         }
-
-        events.emit("play", id3Meta)
-    } else {
-        // EH...
     }
 }
 
-/**
- * Resumes a song if it's been paused
- */
-function resume() {
-    // Un-pause the song
-    if (this.audioInterface.paused)
-        this.audioInterface.play()
-    this.events.emit("resume")
-}
+// register HTML audio as a playable core
+player.playerCores['file'] = require('./player-html')
 
-/**
- * Pauses the currently playing song
- */
-function pause() {
-    // Pause the song
-    if (!this.audioInterface.paused)
-        this.audioInterface.pause()
-    this.events.emit("pause")
-}
-
-/**
- * Skip the currently playing song
- */
-function skip() {
-    // Up the index count
-    this.playlistIndex++
-    this.play()
-}
-
-/**
- * Replays the currently playing song
- */
-function replay() {
-    // Set the current time to 0
-    this.audioInterface.currentTime = 0
-}
-
-/**
- * Goes to the previous song
- */
-function back() {
-    // Down the index count
-    this.playlistIndex--
-    this.play()
-}
-
-function getMetadata(index = this.playlistIndex) {
-    // Load the path to this song
-    let songBuffer = fs.readFileSync(this.playlist[index])
-
-    // Extract those magical things?
-    let id3Meta = parse(songBuffer)
-
-    if (id3Meta === false)
-        throw new Error("ID3 parser couldn't find ID3 tags.")
-
-    return id3Meta
-}
-
-/**
- * Did I win?
- */
-module.exports = {
-    playlist, playlistIndex,
-    random, randomAlgo,
-    audioInterface, getMetadata, events,
-    play, pause, resume, skip, replay, back
-}
+module.exports = player
