@@ -2,6 +2,7 @@
 const fs      = require('fs')
 const id3     = require('id3-parser')
 const fileUrl = require('file-url')
+const path    = require('path')
 
 let htmlCore = {
     /** Reference ID */
@@ -13,19 +14,22 @@ let htmlCore = {
     /** Play song */
     play: song => {
         // if song is not passed just play
-        if (song === undefined) this.htmlAudio.play()
+        if (song === undefined) { 
+            htmlCore.htmlAudio.play()
+            return
+        }
 
         // check if the song object has a filename to read
         if (song.filename === undefined) throw new TypeError()
 
         // load it into the loader and play it
-        this.htmlAudio.src = song.filename
-        this.htmlAudio.play()
+        htmlCore.htmlAudio.src = song.filename
+        htmlCore.htmlAudio.play()
     },
 
     /** Pause song */
     pause: () => {
-        this.htmlAudio.pause()
+        htmlCore.htmlAudio.pause()
     },
 
     /**
@@ -34,14 +38,14 @@ let htmlCore = {
     */
     getSong: ref => {
         // check if reference
-        if (typeof ref !== 'string' || !ref.startsWith(this.refID()))
+        if (typeof ref !== 'string' || !ref.startsWith(htmlCore.refID()))
             return undefined
 
         // load the song to fetch metadata
-        let filename = ref.substring(ref.indexOf(':'))
+        let filename = ref.substring(ref.indexOf(':') + 1)
         let songBuffer = fs.readFileSync(filename)
         let id3Meta = id3.parse(songBuffer)
-        if (id3Meta == false) throw new Error("ID3 parser couldn't read tags")
+        if (id3Meta == false) console.warn("ID3 parser couldn't read tags")
 
         // return song information
         return {
@@ -49,13 +53,13 @@ let htmlCore = {
             author: id3Meta.artist,
 
             /** Song title */
-            title: id3Meta.title,
+            title: id3Meta.title || path.basename(filename),
 
             /** Song reference */
             ref,
 
             /** Player core */
-            core: this,
+            core: htmlCore,
 
             /** Song filename */
             filename
@@ -67,7 +71,16 @@ let htmlCore = {
         // criss-cross events between the HTMLAudio API and player system
 
         // play next song when this one ends
-        this.htmlAudio.addEventListener('ended', () => player.next())
+        htmlCore.htmlAudio.addEventListener('ended', () => player.next())
+    },
+
+    /** Is the player paused */
+    isPaused: () => {
+        return htmlCore.htmlAudio.paused
+    },
+
+    coreActive: () => {
+        return htmlCore.htmlAudio.src !== ''
     }
 }
 

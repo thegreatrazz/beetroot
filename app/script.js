@@ -21,6 +21,7 @@ const library = require("./scripts/library");
 const overlays = require("./scripts/overlays");
 const player = require("./scripts/player");
 const server = require("./scripts/server");
+const ui     = require('./scripts/ui')
 
 //** COMPONENT HOOKS **//
 
@@ -29,7 +30,7 @@ function listMusicQueue() {
     let songQueue = player.playlist;
 
     songQueue.forEach((val, i) => {
-        let metadata = player.getMetadata(i);
+        let song = val
         /*
                 <li>
                     <div class="song-info">
@@ -44,8 +45,8 @@ function listMusicQueue() {
 
         let li = $('<li />')
 
-        let songArtist = $("<div class='song-artist' />").text(metadata.artist);
-        let songTitle = $("<div class='song-title' />").text(metadata.title || path.basename(player.playlist[i]));
+        let songArtist = $("<div class='song-artist' />").text(song.author || '???');
+        let songTitle = $("<div class='song-title' />").text(song.title || path.basename(player.playlist[i].filename));
         $("<div class='song-info' />")
             .append(songArtist)
             .append(songTitle)
@@ -85,43 +86,27 @@ settings.hooks.push((key, content) => {
     i18n.setLanguage(content);
 });
 
-player.events.on("play", x => {
+player.on("play", x => {
     $(".fa-play")
         .removeClass("fa-play")
         .addClass("fa-pause");
     $("header .song-artist").text(x.artist || i18n.getString("body.noAuthor"));
     $("header .song-title").text(
-        x.title || path.basename(player.playlist[player.playlistIndex])
+        x.title || path.basename(player.playlist[player.playlistIndex].filename)
     );
     $(".player-status").addClass("playing");
 });
-player.events.on("resume", x => {
+player.on("resume", x => {
     $(".fa-play")
         .removeClass("fa-play")
         .addClass("fa-pause");
     $(".player-status").addClass("playing");
 });
-player.events.on("pause", x => {
+player.on("pause", x => {
     $(".fa-pause")
         .removeClass("fa-pause")
         .addClass("fa-play");
     $(".player-status").removeClass("playing");
-});
-
-$(".player-play").click(ev => {
-    // Play if no song has been played yet
-    if (player.playlistIndex < 0) {
-        player.play();
-        return;
-    }
-
-    // Otherwise, just pick up where you left off
-    if (player.audioInterface.paused) player.resume();
-    else player.pause();
-});
-
-$(".player-skip").click(ev => {
-    player[$(ev.currentTarget).attr("data-player-action")]();
 });
 
 //** INITIALISATION **//
@@ -137,14 +122,12 @@ library.updateMusicFiles();
 
 // Buttons for adding folders to playlist
 $("#librarycfg > a:nth-child(5)").click(ev => {
-    console.log("Hyello");
-    library.getMusicFiles(files => {
-        console.log("No friends to play music with? No problem.");
-        console.log("I'd use a better player like VLC though.");
-        player.playlist = files
-        setTimeout(listMusicQueue, 1000)
-    });
+    let files = library.getMusicFiles()
+    setTimeout(() => {
+        files.forEach(val => {
+            let song = player.lookup(`file:${val}`)
+            player.addSong(song)
+            listMusicQueue()
+        })
+    }, 1000)
 });
-
-// Insert the UI glue code
-document.write('<script src="scripts/ui.js"></script>');

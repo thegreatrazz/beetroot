@@ -8,16 +8,22 @@ let player = {
     playlist: [ ],
 
     /** The currently playing song */
-    playlistIndex: -1,
+    playlistIndex: 0,
 
     /** Whether this playlist is playing randomly */
     random: false,
 
     /** The list of indexes to be played randomly */
-    randomList = [ ],
+    randomList: [ ],
 
     /** The cores of various players */
     playerCores: { },
+
+    /** Is the player paused */
+    isPaused: () => {
+        if (player.getCurrentCore() === undefined) return true
+        return player.getCurrentCore().isPaused()
+    },
 
     /** Listen to an event */
     on: (...args) => events.on(...args),
@@ -26,15 +32,31 @@ let player = {
     off: (...args) => events.once(...args),
 
     /** Get the current song's playing core */
-    getCurrentCore: () => this.playlist[this.playlistIndex].core,
+    getCurrentCore: () => {
+        let song = player.playlist[player.playlistIndex]
+        if (song && song.core) return song.core
+    },
 
     /** Play a song from the playlist */
-    play: index => {
-        // stop the current song
-        this.getCurrentCore().pause()
+    play: (index) => {
+        if (player.playlist.length == 0) return // do nothing if we have nothing in playlist
 
-        this.playlistIndex = index
-        let song = this.playlist[index]
+        // if the index is undefined and song already exists, play
+        if (index === undefined && player.getCurrentCore().coreActive()) {
+            player.getCurrentCore().play()
+            return
+        }
+
+        // clip negative indexes
+        if (index < 0) index = 0
+
+        // stop the current song
+        if (player.getCurrentCore() !== undefined)
+            player.getCurrentCore().pause()
+
+        // update index and play next
+        player.playlistIndex = index
+        let song = player.playlist[index]
         let core = song.core
         core.play(song)
 
@@ -44,28 +66,32 @@ let player = {
 
     /** Pause the currently playing song */
     pause: () => {
-        this.getCurrentCore().pause()
+        if (player.getCurrentCore() === undefined) return
+
+        player.getCurrentCore().pause()
         events.emit('pause')
     },
 
     /** Resume the currently playing song (from pause) */
     resume: () => {
-        this.getCurrentCore().play()
-        events.emit('play', this.playlist[this.playlistIndex])
+        if (player.getCurrentCore() === undefined) return
+
+        player.getCurrentCore().play()
+        events.emit('play', player.playlist[player.playlistIndex])
     },
 
     /** Go one song back */
     back: () => {
-        if (--this.playlistIndex < 0)
-            this.playlistIndex = this.playlist.length - 1
-        this.play(this.playlistIndex)
+        if (--player.playlistIndex < 0)
+            player.playlistIndex = player.playlist.length - 1
+        player.play(player.playlistIndex)
     },
 
     /** Go ones song next */
-    next: () => {
-        if (++this.playlistIndex > this.playlist.length)
-            this.playlistIndex = 0
-        this.play(this.playlistIndex)
+    skip: () => {
+        if (++player.playlistIndex > player.playlist.length)
+            player.playlistIndex = 0
+        player.play(player.playlistIndex)
     },
 
     /** Look up song */
@@ -73,7 +99,7 @@ let player = {
         if (typeof ref !== 'string') return undefined
         
         let coreID = ref.substring(0, ref.indexOf(':'))
-        let core = this.playerCores[coreID]
+        let core = player.playerCores[coreID]
 
         return core.getSong(ref)
     },
@@ -84,7 +110,7 @@ let player = {
         if (typeof song.ref  !== 'string') throw new TypeError('Non-existent song reference')
         if (typeof song.core !== 'object') throw new TypeError('Song doesn\'t belong to an installed core')
 
-        this.playlist.push(song)
+        player.playlist.push(song)
         events.emit('playlist-add', song)
     },
 
@@ -99,11 +125,11 @@ let player = {
         &&  typeof core.getSong  === 'function'
         &&  typeof core.register === 'function') {
             // register the core
-            core.register(this, events)
+            core.register(player, events)
 
             // get the core ID and save the core as that
             let coreID = core.refID()
-            this.playerCores[coreID] = core
+            player.playerCores[coreID] = core
         }
     }
 }
