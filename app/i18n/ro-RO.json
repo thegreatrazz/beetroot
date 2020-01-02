@@ -20,9 +20,12 @@
 
         "body.noAuthor": "Autor nedefinit",
         "body.requests": "Cereri",
+        "body.requests.disabled": "Requests are disabled. To enable, click on \uf0ac above.",
+        "body.requests.empty": "Cererile nu sunt valabile la momentul prezent. O să fie adăugate în meniul \uf0ac deasupra când sunt gata.",
         "body.requests.accept": "Acceptați",
         "body.requests.deny": "Respingeți",
         "body.queue": "Playlist",
+        "body.queue.empty": "Playlistul este gol. Primiți cereri sau vă puteți importa bibilioteca de la \uf07b.",
         "body.queue.move.up": "Mutați sus",
         "body.queue.move.down": "Mutați jos",
         "body.queue.remove": "Scoateți din listă",

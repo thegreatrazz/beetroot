@@ -2,7 +2,7 @@
 * { box-sizing: border-box }
 
 :root {
-    font-family: "Montserrat", "Noto Sans CJK JP Regular", sans-serif;
+    font-family: 'Inter', "M+ 1c", sans-serif, 'Font Awesome 5 Free';
     font-size: 14px;
     background: #FAFAFA;
     color: #212121;
@@ -27,18 +27,18 @@ small {
 
 .btn {
     display: inline-block;
-    padding: 4px 8px;
+    padding: 1px 16px;
     background: white;
     color: #212121;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, .2);
+    border: 1px solid #e0e0e0;
+    /* box-shadow: 0 4px 4px rgba(0, 0, 0, .2); */
     border-radius: 8px;
-    transition: transform .1s, box-shadow .1s, background .1s;
+    transition: transform .1s, box-shadow .1s, border-color .1s;
 }
 
     .btn:active {
-        transform: translateY(2px);
-        box-shadow: 0 2px 2px rgba(0, 0, 0, .1);
-        background: white;
+        box-shadow: 0 0 0 2px #3F51B5;
+        border-color: transparent;
     }
 
 .heading {
@@ -46,10 +46,12 @@ small {
     text-transform: uppercase;
     opacity: .8;
     padding-bottom: 8px;
+    font-weight: 900;
 }
 
 .subheading {
     font-size: 10px;
+    font-weight: 800;
     text-transform: uppercase;
     opacity: .7;
     padding-bottom: 6px;
@@ -289,10 +291,10 @@ header {
     }
 
         header > .song-info > .song-artist {
-            font-size: 14px;
+            font-size: 12px;
             padding-left: 12px;
-            font-style: italic;
-            font-weight: 500;
+            text-transform: uppercase;
+            font-weight: 700;
             white-space: nowrap;
         }
 
@@ -406,7 +408,8 @@ main {
             main > ul > li .song-info .song-artist {
                 display: block;
                 font-size: 12px;
-                font-style: italic;
+                font-weight: 900;
+                text-transform: uppercase;
             }
 
             main > ul > li .song-info .song-title {

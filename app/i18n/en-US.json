@@ -20,9 +20,12 @@
 
         "body.noAuthor": "Unknown Author",
         "body.requests": "Requests",
+        "body.requests.disabled": "Requests are disabled. To enable, click on \uf0ac above.",
+        "body.requests.empty": "Requests are not available. They will be added to the \uf0ac menu above.",
         "body.requests.accept": "Accept",
         "body.requests.deny": "Deny",
         "body.queue": "Queue",
+        "body.queue.empty": "The queue is empty. Get some requests going or you can import your library from \uf07b.",
         "body.queue.move.up": "Move up",
         "body.queue.move.down": "Move down",
         "body.queue.remove": "Remove from Queue",

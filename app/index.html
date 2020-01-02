@@ -2,7 +2,8 @@
 <html lang="en">
     <head>
         <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.css">
-        <link rel="stylesheet" href="font/monserrat.css">
+        <link rel="stylesheet" href="font/inter/inter.css">
+        <link rel="stylesheet" href="font/courier-prime/courier-prime.css">
         <link rel="stylesheet" href="style.css">
 
         <title data-i18n-string="app.name"></title>
@@ -38,33 +39,10 @@
             </div>
         </header>
         <main>
-            <div class="heading">Requests</div>
-            <ul id="song-requests" data-empty-text="You have no requests. Well, the server isn't ready yet."></ul>
-            <div class="heading">Queue</div>
-            <ul id="song-queue">
-                <li>
-                    <div class="song-info">
-                        <span class="song-artist">Smash Mouth</span>
-                        <span class="song-title">All Star <i class="fab fa-fw fa-spotify"></i></span>
-                    </div>
-                    <div class="song-actions">
-                        <a href="#"><i class="fas fa-fw fa-chevron-up"></i></a>
-                        <a href="#"><i class="fas fa-fw fa-chevron-down"></i></a>
-                        <a href="#"><i class="fas fa-fw fa-times"></i></a>
-                    </div>
-                </li>
-                <li>
-                    <div class="song-info">
-                        <span class="song-artist">Smash Mouth</span>
-                        <span class="song-title">All Star <i class="fab fa-fw fa-spotify"></i></span>
-                    </div>
-                    <div class="song-actions">
-                        <a href="#"><i class="fas fa-fw fa-chevron-up"></i></a>
-                        <a href="#"><i class="fas fa-fw fa-chevron-down"></i></a>
-                        <a href="#"><i class="fas fa-fw fa-times"></i></a>
-                    </div>
-                </li>
-            </ul>
+            <div class="heading" data-i18n-string="body.requests">Requests</div>
+            <ul id="song-requests" data-i18n-attr="data-empty-text" data-i18n-string="body.requests.empty"></ul>
+            <div class="heading" data-i18n-string="body.queue">Queue</div>
+            <ul id="song-queue" data-i18n-attr="data-empty-text" data-i18n-string="body.queue.empty"></ul>
         </main>
 
         <!-- Overlays -->
