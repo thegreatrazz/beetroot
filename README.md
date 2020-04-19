@@ -7,6 +7,10 @@ Right now, it's only a crappy music player, but I will eventually make it so
 the user's guests can requests songs. But that will be done half-way through
 the implementation of [the web service][beetroot-server].
 
+>
+> This project is deprecated in favour of [Beetroot/Phoenix](https://github.com/thegreatrazz/BeetrootPhoenix)
+>
+
 ## Screenshot
 
 ![Beetroot Player - Build 2019-05-12 17-17](vanity.png)
